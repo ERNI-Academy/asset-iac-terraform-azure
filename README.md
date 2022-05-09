@@ -9,9 +9,9 @@ Infrastructure as Code (IaC) of Terraform modules for Azure
 
 This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
-- [Terraform](https://www.terraform.io/)
-- [Terraform AzureRm provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs)
-- [Sonarqube](https://www.sonarqube.org/)
+- [Terraform ">= 1.1.3"](https://www.terraform.io/)
+- [Terraform AzureRm provider version ">= 2.93.0"](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs)
+- [Sonarqube image sonarqube:8.9-developer](https://www.sonarqube.org/)
 
 ## Features
 
