@@ -1,6 +1,6 @@
-# About {{ Name }}
+# About assets-iac-terraform-azure
 
-ERNI Academy StarterKit, PoC, or Gidelines. This is an about description of your repository.
+Infrastructure as Code (IaC) of Terraform modules for Azure
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
@@ -9,14 +9,15 @@ ERNI Academy StarterKit, PoC, or Gidelines. This is an about description of your
 
 This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
-- [Tools A](https://example.com)
-- [Framework B](https://example.com)
-- [Project C](https://example.com)
+- [Terraform](https://www.terraform.io/)
+- [Terraform AzureRm provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs)
+- [Sonarqube](https://www.sonarqube.org/)
 
 ## Features
 
-- Be awesome
-- Make things faster
+- Azure App Service
+- Azure Function
+- Sonarqube hosted in linux app service plan with docker compose and sql server
 
 ## Getting Started
 
@@ -33,20 +34,38 @@ Installation instructions {{ Name }} by running:
 1. Clone the repo
 
    ```sh
-   git clone https://github.com/ERNI-Academy/Project-Name.git
+   git clone https://github.com/ERNI-Academy/assets-iac-terraform-azure.git
    ```
 
-2. Install packages
+2. Import the modules into your existing terraform configuration. The azurerm provider is mandatory, make sure you include a reference to the provider like this:
 
-    ```sh
-    npm install
-    ```
+   ```yaml
+    terraform {
+        required_providers {
+            azurerm = {
+                source = "hashicorp/azurerm"
+                version = ">= [version]"
+            }
+        }
+    }
 
-3. Configure
+    provider "azurerm" {
+        features {}
+    }
+   ```
 
-    ```JS
-    const API_KEY = 'ENTER YOUR API';
-    ```
+3. Call the desire module, to see mandatory variables take a look at variables.tf file for each module
+
+  ```yaml
+    module "function" {
+        source = "[path to module]/function"
+
+        # make sure you pass all mandatory variables
+    }
+   ```
+
+   > `Depends on Important Note`  
+   > Some modules expects that you have resources created. e.g. a Resource Group. Then make sure you include a "depends_on"
 
 ## Contributing
 
@@ -56,7 +75,7 @@ Please see our [Contribution Guide](CONTRIBUTING.md) to learn how to contribute.
 
 ![MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 
-(LICENSE) © {{Year}} [ERNI - Swiss Software Engineering](https://www.betterask.erni)
+(LICENSE) © 2 [ERNI - Swiss Software Engineering](https://www.betterask.erni)
 
 ## Code of conduct
 
@@ -64,7 +83,7 @@ Please see our [Code of Conduct](CODE_OF_CONDUCT.md)
 
 ## Stats
 
-Check [https://repobeats.axiom.co/](https://repobeats.axiom.co/) for the right URL
+![Alt](https://repobeats.axiom.co/api/embed/66328217228da1e2beec04e6df2a552bd793a636.svg "Repobeats analytics image")
 
 ## Follow us
 
