@@ -26,6 +26,7 @@ resource "azurerm_application_insights" "insights" {
   location = var.location
   application_type = "web"
   workspace_id = var.lawId
+  public_network_access_enabled = false
   tags = var.tags
 }
 
