@@ -173,6 +173,8 @@ Installation instructions assets-iac-terraform-azure by running:
             sqlServerName = "mysonarqube"
             sonarqubeInstances = [ "sonarqube-for-organization-a", "sonarqube-for-organization-b" ]
         }
+        
+        # Sadly there is a manual step you need to copy the profile.json to share "${var.instanceName}-sonarqube-conf"
    ```
 
 ## Contributing
