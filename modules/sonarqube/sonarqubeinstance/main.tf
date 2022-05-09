@@ -1,3 +1,14 @@
+/* This module creates the resources for a Sonarqube instance
+
+Resources created by this module:
+1- Files shares in the Storage accounts.
+2- App Service that host the docker compose fil
+3- Sql Database
+
+There is a manual step after the execution of this module, look at the TODO in this file
+
+*/
+
 locals {
   sharePluginsName = "${var.instanceName}-sonarqube-bundled-plugins"
   shareConfName = "${var.instanceName}-sonarqube-conf"
@@ -40,7 +51,8 @@ resource "azurerm_storage_share" "shareLogs" {
   quota = var.fileShareQuota
 }
 
-//this is the only manual step I have try to do it with the code below with no success
+//TODO: automate
+//this is the only manual step I have try to automated with the code below with no success
 //you need to copy the profile.json to share "${var.instanceName}-sonarqube-conf"
 
 # resource "null_resource" "uploadfile" {
