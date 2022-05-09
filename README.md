@@ -7,8 +7,6 @@ Infrastructure as Code (IaC) of Terraform modules for Azure
 
 ## Built With
 
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-
 - [Terraform ">= 1.1.3"](https://www.terraform.io/)
 - [Terraform AzureRm provider version ">= 2.93.0"](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs)
 - [Sonarqube image sonarqube:8.9-developer](https://www.sonarqube.org/)
@@ -29,7 +27,7 @@ This is an example of how to list things you need to use the software and how to
 
 ## Installation
 
-Installation instructions {{ Name }} by running:
+Installation instructions assets-iac-terraform-azure by running:
 
 1. Clone the repo
 
@@ -39,7 +37,7 @@ Installation instructions {{ Name }} by running:
 
 2. Import the modules into your existing terraform configuration. The azurerm provider is mandatory, make sure you include a reference to the provider like this:
 
-   ```yaml
+   ```
     terraform {
         required_providers {
             azurerm = {
@@ -56,7 +54,7 @@ Installation instructions {{ Name }} by running:
 
 3. Call the desire module, to see mandatory variables take a look at variables.tf file for each module
 
-  ```yaml
+  ```terraform
     module "function" {
         source = "[path to module]/function"
 
@@ -66,6 +64,116 @@ Installation instructions {{ Name }} by running:
 
    > `Depends on Important Note`  
    > Some modules expects that you have resources created. e.g. a Resource Group. Then make sure you include a "depends_on"
+
+## Examples
+
+### function module
+    ``` terraform
+        terraform {
+            required_providers {
+                azurerm = {
+                    source = "hashicorp/azurerm"
+                    version = ">= [version]"
+                }
+            }
+        }
+
+        provider "azurerm" {
+            features {}
+        }
+
+        resource "azurerm_resource_group" "rg" {
+            name = "MyRg"
+            location = "West Europe"
+            tags =  {
+                MyTag = "MyTag value"
+            }
+        }
+
+        module "function" {
+            source = "[path to module]/function"
+
+            depends_on = [
+                azurerm_resource_group.rg,
+            ]
+
+            resourceGroupName = azurerm_resource_group.rg.name
+            location = azurerm_resource_group.rg.location
+            functionName = "myfnapp"
+            environment = "DEV"
+            lawId = "[id of your analytics workspace that you need to create first]"
+            tags =  {
+                MyTag = "MyTag value"
+            }
+        }
+   ```
+
+### appservice module
+    ``` terraform
+        terraform {
+            required_providers {
+                azurerm = {
+                    source = "hashicorp/azurerm"
+                    version = ">= [version]"
+                }
+            }
+        }
+
+        provider "azurerm" {
+            features {}
+        }
+
+        resource "azurerm_resource_group" "rg" {
+            name = "MyRg"
+            location = "West Europe"
+            tags =  {
+                MyTag = "MyTag value"
+            }
+        }
+
+        module "appservice" {
+            source = "[path to module]/appservice"
+
+            depends_on = [
+                azurerm_resource_group.rg,
+            ]
+
+            resourceGroupName = azurerm_resource_group.rg.name
+            location = azurerm_resource_group.rg.location
+            appName = "myapp"
+            environment = "DEV"
+            planId = "[id of app service plan that you need to create first]"
+            lawId = "[id of your analytics workspace that you need to create first]"
+            tags =  {
+                MyTag = "MyTag value"
+            }
+        }
+   ```
+
+### sonarqube
+    ``` terraform
+        terraform {
+            required_providers {
+                azurerm = {
+                    source = "hashicorp/azurerm"
+                    version = ">= [version]"
+                }
+            }
+        }
+
+        provider "azurerm" {
+            features {}
+        }
+
+        module "sonarqube" {
+            source = "[path to module]/sonarqube"
+
+            resourceGroupName = "SONARQUBE"
+            accountName = "mysonarqube"
+            sqlServerName = "mysonarqube"
+            sonarqubeInstances = [ "sonarqube-for-organization-a", "sonarqube-for-organization-b" ]
+        }
+   ```
 
 ## Contributing
 
