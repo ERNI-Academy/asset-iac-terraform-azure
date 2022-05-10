@@ -37,7 +37,7 @@ Installation instructions assets-iac-terraform-azure by running:
 
 2. Import the modules into your existing terraform configuration. The azurerm provider is mandatory, make sure you include a reference to the provider like this:
 
-   ```
+   ```terraform
     terraform {
         required_providers {
             azurerm = {
@@ -54,13 +54,13 @@ Installation instructions assets-iac-terraform-azure by running:
 
 3. Call the desire module, to see mandatory variables take a look at variables.tf file for each module
 
-  ```terraform
-    module "function" {
-        source = "[path to module]/function"
+    ```terraform
+        module "function" {
+            source = "[path to module]/function"
 
-        # make sure you pass all mandatory variables
-    }
-   ```
+            # make sure you pass all mandatory variables
+        }
+    ```
 
    > `Depends on Important Note`  
    > Some modules expects that you have resources created. e.g. a Resource Group. Then make sure you include a "depends_on"
@@ -68,48 +68,50 @@ Installation instructions assets-iac-terraform-azure by running:
 ## Examples
 
 ### function module
-    ``` terraform
-        terraform {
-            required_providers {
-                azurerm = {
-                    source = "hashicorp/azurerm"
-                    version = ">= [version]"
+
+        ```terraform
+            terraform {
+                required_providers {
+                    azurerm = {
+                        source = "hashicorp/azurerm"
+                        version = ">= [version]"
+                    }
                 }
             }
-        }
 
-        provider "azurerm" {
-            features {}
-        }
-
-        resource "azurerm_resource_group" "rg" {
-            name = "MyRg"
-            location = "West Europe"
-            tags =  {
-                MyTag = "MyTag value"
+            provider "azurerm" {
+                features {}
             }
-        }
 
-        module "function" {
-            source = "[path to module]/function"
-
-            depends_on = [
-                azurerm_resource_group.rg,
-            ]
-
-            resourceGroupName = azurerm_resource_group.rg.name
-            location = azurerm_resource_group.rg.location
-            functionName = "myfnapp"
-            environment = "DEV"
-            lawId = "[id of your analytics workspace that you need to create first]"
-            tags =  {
-                MyTag = "MyTag value"
+            resource "azurerm_resource_group" "rg" {
+                name = "MyRg"
+                location = "West Europe"
+                tags =  {
+                    MyTag = "MyTag value"
+                }
             }
-        }
-   ```
+
+            module "function" {
+                source = "[path to module]/function"
+
+                depends_on = [
+                    azurerm_resource_group.rg,
+                ]
+
+                resourceGroupName = azurerm_resource_group.rg.name
+                location = azurerm_resource_group.rg.location
+                functionName = "myfnapp"
+                environment = "DEV"
+                lawId = "[id of your analytics workspace that you need to create first]"
+                tags =  {
+                    MyTag = "MyTag value"
+                }
+            }
+    ```
 
 ### appservice module
-    ``` terraform
+
+    ```terraform
         terraform {
             required_providers {
                 azurerm = {
@@ -148,10 +150,11 @@ Installation instructions assets-iac-terraform-azure by running:
                 MyTag = "MyTag value"
             }
         }
-   ```
+    ```
 
-### sonarqube
-    ``` terraform
+### sonarqube module
+
+    ```terraform
         terraform {
             required_providers {
                 azurerm = {
@@ -175,7 +178,7 @@ Installation instructions assets-iac-terraform-azure by running:
         }
         
         # Sadly there is a manual step you need to copy the profile.json to share "${var.instanceName}-sonarqube-conf"
-   ```
+    ```
 
 ## Contributing
 
