@@ -69,116 +69,116 @@ Installation instructions assets-iac-terraform-azure by running:
 
 ### function module
 
-    ```terraform
-        terraform {
-            required_providers {
-                azurerm = {
-                    source = "hashicorp/azurerm"
-                    version = ">= [version]"
-                }
+```terraform
+   terraform {
+        required_providers {
+            azurerm = {
+                source = "hashicorp/azurerm"
+                version = ">= [version]"
             }
         }
+    }
 
-        provider "azurerm" {
-            features {}
+    provider "azurerm" {
+        features {}
+    }
+
+    resource "azurerm_resource_group" "rg" {
+        name = "MyRg"
+        location = "West Europe"
+        tags =  {
+            MyTag = "MyTag value"
         }
+    }
 
-        resource "azurerm_resource_group" "rg" {
-            name = "MyRg"
-            location = "West Europe"
-            tags =  {
-                MyTag = "MyTag value"
-            }
+    module "function" {
+        source = "[path to module]/function"
+
+        depends_on = [
+            azurerm_resource_group.rg,
+        ]
+
+        resourceGroupName = azurerm_resource_group.rg.name
+        location = azurerm_resource_group.rg.location
+        functionName = "myfnapp"
+        environment = "DEV"
+        lawId = "[id of your analytics workspace that you need to create first]"
+        tags =  {
+            MyTag = "MyTag value"
         }
-
-        module "function" {
-            source = "[path to module]/function"
-
-            depends_on = [
-                azurerm_resource_group.rg,
-            ]
-
-            resourceGroupName = azurerm_resource_group.rg.name
-            location = azurerm_resource_group.rg.location
-            functionName = "myfnapp"
-            environment = "DEV"
-            lawId = "[id of your analytics workspace that you need to create first]"
-            tags =  {
-                MyTag = "MyTag value"
-            }
-        }
-    ```
+    } 
+```
 
 ### appservice module
 
-    ```terraform
-        terraform {
-            required_providers {
-                azurerm = {
-                    source = "hashicorp/azurerm"
-                    version = ">= [version]"
-                }
+```terraform
+    terraform {
+        required_providers {
+            azurerm = {
+                source = "hashicorp/azurerm"
+                version = ">= [version]"
             }
         }
+    }
 
-        provider "azurerm" {
-            features {}
+    provider "azurerm" {
+        features {}
+    }
+
+    resource "azurerm_resource_group" "rg" {
+        name = "MyRg"
+        location = "West Europe"
+        tags =  {
+            MyTag = "MyTag value"
         }
+    }
 
-        resource "azurerm_resource_group" "rg" {
-            name = "MyRg"
-            location = "West Europe"
-            tags =  {
-                MyTag = "MyTag value"
-            }
+    module "appservice" {
+        source = "[path to module]/appservice"
+
+        depends_on = [
+            azurerm_resource_group.rg,
+        ]
+
+        resourceGroupName = azurerm_resource_group.rg.name
+        location = azurerm_resource_group.rg.location
+        appName = "myapp"
+        environment = "DEV"
+        planId = "[id of app service plan that you need to create first]"
+        lawId = "[id of your analytics workspace that you need to create first]"
+        tags =  {
+            MyTag = "MyTag value"
         }
-
-        module "appservice" {
-            source = "[path to module]/appservice"
-
-            depends_on = [
-                azurerm_resource_group.rg,
-            ]
-
-            resourceGroupName = azurerm_resource_group.rg.name
-            location = azurerm_resource_group.rg.location
-            appName = "myapp"
-            environment = "DEV"
-            planId = "[id of app service plan that you need to create first]"
-            lawId = "[id of your analytics workspace that you need to create first]"
-            tags =  {
-                MyTag = "MyTag value"
-            }
-        }
-    ```
+    }
+```
 
 ### sonarqube module
 
-    ```terraform
-        terraform {
-            required_providers {
-                azurerm = {
-                    source = "hashicorp/azurerm"
-                    version = ">= [version]"
-                }
+```terraform
+   terraform {
+        required_providers {
+            azurerm = {
+                source = "hashicorp/azurerm"
+                version = ">= [version]"
             }
         }
+    }
 
-        provider "azurerm" {
-            features {}
-        }
+    provider "azurerm" {
+        features {}
+    }
 
-        module "sonarqube" {
-            source = "[path to module]/sonarqube"
+    module "sonarqube" {
+        source = "[path to module]/sonarqube"
 
-            resourceGroupName = "SONARQUBE"
-            accountName = "mysonarqube"
-            sqlServerName = "mysonarqube"
-            sonarqubeInstances = [ "sonarqube-for-organization-a", "sonarqube-for-organization-b" ]
-        }
-        
-        # Sadly there is a manual step you need to copy the profile.json to share "${var.instanceName}-sonarqube-conf"
-    ```
+        resourceGroupName = "SONARQUBE"
+        accountName = "mysonarqube"
+        sqlServerName = "mysonarqube"
+        sonarqubeInstances = [ "sonarqube-for-organization-a", "sonarqube-for-organization-b" ]
+    }
+    
+    # Sadly there is a manual step you need to copy the profile.json to share "${var.instanceName}-sonarqube-conf"
+```
 
 ## Contributing
 
