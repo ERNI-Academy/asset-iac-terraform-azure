@@ -1,22 +1,21 @@
-# About {{ Name }}
+# About assets-iac-terraform-azure
 
-ERNI Academy StarterKit, PoC, or Gidelines. This is an about description of your repository.
+Infrastructure as Code (IaC) of Terraform modules for Azure
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Built With
 
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+- [Terraform ">= 1.1.3"](https://www.terraform.io/)
+- [Terraform AzureRm provider version ">= 2.93.0"](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs)
+- [Sonarqube image sonarqube:8.9-developer](https://www.sonarqube.org/)
 
-- [Tools A](https://example.com)
-- [Framework B](https://example.com)
-- [Project C](https://example.com)
+## Modules
 
-## Features
-
-- Be awesome
-- Make things faster
+- Azure App Service
+- Azure Function
+- Sonarqube hosted in linux app service plan with docker compose and sql server
 
 ## Getting Started
 
@@ -28,25 +27,158 @@ This is an example of how to list things you need to use the software and how to
 
 ## Installation
 
-Installation instructions {{ Name }} by running:
+Installation instructions assets-iac-terraform-azure by running:
 
 1. Clone the repo
 
    ```sh
-   git clone https://github.com/ERNI-Academy/Project-Name.git
+   git clone https://github.com/ERNI-Academy/assets-iac-terraform-azure.git
    ```
 
-2. Install packages
+2. Import the modules into your existing terraform configuration. The azurerm provider is mandatory, make sure you include a reference to the provider like this:
 
-    ```sh
-    npm install
+   ```terraform
+    terraform {
+        required_providers {
+            azurerm = {
+                source = "hashicorp/azurerm"
+                version = ">= [version]"
+            }
+        }
+    }
+
+    provider "azurerm" {
+        features {}
+    }
+   ```
+
+3. Call the desire module, to see mandatory variables take a look at variables.tf file for each module
+
+    ```terraform
+        module "function" {
+            source = "[path to module]/function"
+
+            # make sure you pass all mandatory variables
+        }
     ```
 
-3. Configure
+   > `Depends on Important Note`  
+   > Some modules expects that you have resources created. e.g. a Resource Group. Then make sure you include a "depends_on"
 
-    ```JS
-    const API_KEY = 'ENTER YOUR API';
-    ```
+## Examples
+
+### function module
+
+```terraform
+   terraform {
+        required_providers {
+            azurerm = {
+                source = "hashicorp/azurerm"
+                version = ">= [version]"
+            }
+        }
+    }
+
+    provider "azurerm" {
+        features {}
+    }
+
+    resource "azurerm_resource_group" "rg" {
+        name = "MyRg"
+        location = "West Europe"
+        tags =  {
+            MyTag = "MyTag value"
+        }
+    }
+
+    module "function" {
+        source = "[path to module]/function"
+
+        depends_on = [
+            azurerm_resource_group.rg,
+        ]
+
+        resourceGroupName = azurerm_resource_group.rg.name
+        location = azurerm_resource_group.rg.location
+        functionName = "myfnapp"
+        environment = "DEV"
+        lawId = "[id of your analytics workspace that you need to create first]"
+        tags =  {
+            MyTag = "MyTag value"
+        }
+    } 
+```
+
+### appservice module
+
+```terraform
+    terraform {
+        required_providers {
+            azurerm = {
+                source = "hashicorp/azurerm"
+                version = ">= [version]"
+            }
+        }
+    }
+
+    provider "azurerm" {
+        features {}
+    }
+
+    resource "azurerm_resource_group" "rg" {
+        name = "MyRg"
+        location = "West Europe"
+        tags =  {
+            MyTag = "MyTag value"
+        }
+    }
+
+    module "appservice" {
+        source = "[path to module]/appservice"
+
+        depends_on = [
+            azurerm_resource_group.rg,
+        ]
+
+        resourceGroupName = azurerm_resource_group.rg.name
+        location = azurerm_resource_group.rg.location
+        appName = "myapp"
+        environment = "DEV"
+        planId = "[id of app service plan that you need to create first]"
+        lawId = "[id of your analytics workspace that you need to create first]"
+        tags =  {
+            MyTag = "MyTag value"
+        }
+    }
+```
+
+### sonarqube module
+
+```terraform
+   terraform {
+        required_providers {
+            azurerm = {
+                source = "hashicorp/azurerm"
+                version = ">= [version]"
+            }
+        }
+    }
+
+    provider "azurerm" {
+        features {}
+    }
+
+    module "sonarqube" {
+        source = "[path to module]/sonarqube"
+
+        resourceGroupName = "SONARQUBE"
+        accountName = "mysonarqube"
+        sqlServerName = "mysonarqube"
+        sonarqubeInstances = [ "sonarqube-for-organization-a", "sonarqube-for-organization-b" ]
+    }
+    
+    # Sadly there is a manual step you need to copy the profile.json to share "${var.instanceName}-sonarqube-conf"
+```
 
 ## Contributing
 
@@ -56,7 +188,7 @@ Please see our [Contribution Guide](CONTRIBUTING.md) to learn how to contribute.
 
 ![MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 
-(LICENSE) © {{Year}} [ERNI - Swiss Software Engineering](https://www.betterask.erni)
+(LICENSE) © 2022 [ERNI - Swiss Software Engineering](https://www.betterask.erni)
 
 ## Code of conduct
 
@@ -64,7 +196,7 @@ Please see our [Code of Conduct](CODE_OF_CONDUCT.md)
 
 ## Stats
 
-Check [https://repobeats.axiom.co/](https://repobeats.axiom.co/) for the right URL
+![Alt](https://repobeats.axiom.co/api/embed/66328217228da1e2beec04e6df2a552bd793a636.svg "Repobeats analytics image")
 
 ## Follow us
 
