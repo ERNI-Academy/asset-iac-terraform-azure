@@ -180,6 +180,68 @@ Installation instructions assets-iac-terraform-azure by running:
     # Sadly there is a manual step you need to copy the profile.json to share "${var.instanceName}-sonarqube-conf"
 ```
 
+### servicebustopicssubscriptions module
+
+```terraform
+   terraform {
+        required_providers {
+            azurerm = {
+                source = "hashicorp/azurerm"
+                version = ">= [version]"
+            }
+        }
+    }
+
+    provider "azurerm" {
+        features {}
+    }
+
+    module "servicebustopicssubscriptions" {
+        source = "[path to module]/servicebustopicssubscriptions"
+
+        resourceGroupName = "MyRG"
+        serviceBusName = "myservicebus"
+        topicsSubscriptions = [
+            {
+                topicName = "topicA",
+                subscriptionName = "sub1"
+            },
+            {
+                topicName = "topicA",
+                subscriptionName = "sub2"
+            },
+            {
+                topicName = "topicB",
+                subscriptionName = "sub3"
+            }]
+    }
+```
+
+### servicebusqueues module
+
+```terraform
+   terraform {
+        required_providers {
+            azurerm = {
+                source = "hashicorp/azurerm"
+                version = ">= [version]"
+            }
+        }
+    }
+
+    provider "azurerm" {
+        features {}
+    }
+
+    module "servicebusqueues" {
+        source = "[path to module]/servicebusqueues"
+
+        resourceGroupName = "MyRG"
+        serviceBusName = "myservicebus"
+        queues = ["queueA", "queueB"]
+    }
+```
+
 ## Contributing
 
 Please see our [Contribution Guide](CONTRIBUTING.md) to learn how to contribute.
