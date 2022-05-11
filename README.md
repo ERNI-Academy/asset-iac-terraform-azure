@@ -180,7 +180,7 @@ Installation instructions assets-iac-terraform-azure by running:
     # Sadly there is a manual step you need to copy the profile.json to share "${var.instanceName}-sonarqube-conf"
 ```
 
-### servicebutopicssubscriptions module
+### servicebustopicssubscriptions module
 
 ```terraform
    terraform {
@@ -196,8 +196,8 @@ Installation instructions assets-iac-terraform-azure by running:
         features {}
     }
 
-    module "servicebutopicssubscriptions" {
-        source = "[path to module]/servicebutopicssubscriptions"
+    module "servicebustopicssubscriptions" {
+        source = "[path to module]/servicebustopicssubscriptions"
 
         resourceGroupName = "MyRG"
         serviceBusName = "myservicebus"
