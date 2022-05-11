@@ -8,7 +8,7 @@ variable "serviceBusName" {
     description = "The Service Bus Name"
 }
 
-variable "serviceBusTopicsSubscriptions" {
+variable "topicsSubscriptions" {
   type = list(object({
     topicName = string
     subscriptionName = string

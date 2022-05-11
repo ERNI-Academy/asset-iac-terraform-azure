@@ -5,7 +5,7 @@
 
 locals {
  serviceBusTopics = toset(distinct([
-    for x in var.serviceBusTopicsSubscriptions : x.topicName
+    for x in var.topicsSubscriptions : x.topicName
  ]))
 }
 
@@ -32,9 +32,9 @@ resource "azurerm_servicebus_subscription" "subscriptions" {
   dead_lettering_on_message_expiration = var.subscriptionEnableDeadLetter
   enable_batched_operations = var.subscriptionEnableBatchOperations
 
-  count = length(var.serviceBusTopicsSubscriptions)
+  count = length(var.topicsSubscriptions)
 
-  name = var.serviceBusTopicsSubscriptions[count.index].subscriptionName
-  topic_name = var.serviceBusTopicsSubscriptions[count.index].topicName
+  name = var.topicsSubscriptions[count.index].subscriptionName
+  topic_name = var.topicsSubscriptions[count.index].topicName
 }
 

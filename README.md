@@ -201,7 +201,7 @@ Installation instructions assets-iac-terraform-azure by running:
 
         resourceGroupName = "MyRG"
         serviceBusName = "myservicebus"
-         serviceBusTopicsSubscriptions = [
+        topicsSubscriptions = [
             {
                 topicName = "topicA",
                 subscriptionName = "sub1"
@@ -214,6 +214,31 @@ Installation instructions assets-iac-terraform-azure by running:
                 topicName = "topicB",
                 subscriptionName = "sub3"
             }]
+    }
+```
+
+### servicebusqueues module
+
+```terraform
+   terraform {
+        required_providers {
+            azurerm = {
+                source = "hashicorp/azurerm"
+                version = ">= [version]"
+            }
+        }
+    }
+
+    provider "azurerm" {
+        features {}
+    }
+
+    module "servicebusqueues" {
+        source = "[path to module]/servicebusqueues"
+
+        resourceGroupName = "MyRG"
+        serviceBusName = "myservicebus"
+        queues = ["queueA", "queueB"]
     }
 ```
 
