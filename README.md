@@ -117,7 +117,7 @@ Installation instructions assets-iac-terraform-azure by running:
         location = azurerm_resource_group.rg.location
         function_name = "myfnapp"
         environment = "DEV"
-        law_id = "[id of your analytics workspace that you need to create first]"
+        law_id = "[id of your analytics workspace that you need to create first]" # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/log_analytics_workspace
 
         tags =  {
             MyTag = "MyTag value"
@@ -156,20 +156,21 @@ Installation instructions assets-iac-terraform-azure by running:
     module "appservice" {
         source = "[path to module]/appservice"
 
-        depends_on = [
-            azurerm_resource_group.rg,
-        ]
-
-        resourceGroupName = azurerm_resource_group.rg.name
+        resource_group_name = azurerm_resource_group.rg.name
         location = azurerm_resource_group.rg.location
-        appName = "myapp"
+        app_name = "myapp"
         environment = "DEV"
-        planId = "[id of app service plan that you need to create first]"
-        lawId = "[id of your analytics workspace that you need to create first]"
+        plan_id = "[id of your app service plan that you need to create first]" # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/app_service_plan
+        law_id = "[id of your analytics workspace that you need to create first]" # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/log_analytics_workspace
+
         tags =  {
             MyTag = "MyTag value"
         }
-    }
+
+        depends_on = [
+            azurerm_resource_group.rg
+        ]
+    } 
 ```
 
 ### sonarqube module
