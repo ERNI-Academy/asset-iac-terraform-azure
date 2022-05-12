@@ -8,7 +8,7 @@ Infrastructure as Code (IaC) of Terraform modules for Azure
 ## Built With
 
 - [Terraform ">= 1.1.3"](https://www.terraform.io/)
-- [Terraform AzureRm provider version ">= 2.93.0"](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs)
+- [Terraform AzureRm provider version ">= >= 3.5.0"](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs)
 - [Sonarqube image sonarqube:8.9-developer](https://www.sonarqube.org/)
 
 ## Modules
@@ -188,7 +188,7 @@ Installation instructions assets-iac-terraform-azure by running:
     }
 
     module "sonarqube" {
-        source = "../../modules/sonarqube"
+        source = "[path to module]/sonarqube"
 
         resource_group_name = "mysonarqube123"
         account_name = "mysonarqube123"
@@ -220,24 +220,24 @@ Installation instructions assets-iac-terraform-azure by running:
         features {}
     }
 
-    module "servicebustopicssubscriptions" {
+    module "servicebus_topics_subscriptions" {
         source = "[path to module]/servicebustopicssubscriptions"
 
-        resourceGroupName = "MyRG"
-        serviceBusName = "myservicebus"
-        topicsSubscriptions = [
+        service_bus_id =  "myservicebusid"
+        topics_subscriptions = [
             {
-                topicName = "topicA",
-                subscriptionName = "sub1"
+                topic_name = "topicA",
+                subscription_name = "sub1"
             },
             {
-                topicName = "topicA",
-                subscriptionName = "sub2"
+                topic_name = "topicA",
+                subscription_name = "sub2"
             },
             {
-                topicName = "topicB",
-                subscriptionName = "sub3"
-            }]
+                topic_name = "topicB",
+                subscription_name = "sub3"
+            }
+        ]
     }
 ```
 
@@ -260,8 +260,7 @@ Installation instructions assets-iac-terraform-azure by running:
     module "servicebusqueues" {
         source = "[path to module]/servicebusqueues"
 
-        resourceGroupName = "MyRG"
-        serviceBusName = "myservicebus"
+        service_bus_id =  "myservicebusid"
         queues = ["queueA", "queueB"]
     }
 ```

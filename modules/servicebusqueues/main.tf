@@ -4,11 +4,10 @@
 // 2- Service Bus -> the service bus namespace
 
 resource "azurerm_servicebus_queue" "queue" {
-  resource_group_name = var.resourceGroupName
-  namespace_name = var.serviceBusName
-  enable_partitioning = var.enablePartitioning
-  default_message_ttl = var.queueTtl
-  max_delivery_count = var.maxDeliveryCount
+  namespace_id = var.service_bus_id
+  enable_partitioning = var.enable_partitioning
+  default_message_ttl = var.queue_ttl
+  max_delivery_count = var.max_delivery_count
 
   for_each = toset(var.queues)
 
