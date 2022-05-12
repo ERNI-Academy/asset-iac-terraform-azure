@@ -23,7 +23,9 @@ This is an example of how you may give instructions on setting up your project l
 
 ## Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
+An existing terraform project where you can import the modules in this repository. Make sure you have something like this first:
+ * https://github.com/antonbabenko/terraform-best-practices/tree/master/examples/small-terraform
+ * https://github.com/antonbabenko/terraform-best-practices/tree/master/examples/medium-terraform
 
 ## Installation
 
@@ -35,7 +37,7 @@ Installation instructions assets-iac-terraform-azure by running:
    git clone https://github.com/ERNI-Academy/assets-iac-terraform-azure.git
    ```
 
-2. Import the modules into your existing terraform configuration. The azurerm provider is mandatory, make sure you include a reference to the provider like this:
+2. Import the modules into your existing terraform project. The azurerm provider is mandatory, make sure you include a reference to the provider like this:
 
    ```terraform
     terraform {
@@ -64,6 +66,23 @@ Installation instructions assets-iac-terraform-azure by running:
 
    > `Depends on Important Note`  
    > Some modules expects that you have resources created. e.g. a Resource Group. Then make sure you include a "depends_on"
+
+4. Execute the modules by running the following [terraform commands](https://www.terraform.io/cli/commands):
+    * terraform init 
+        > Prepare your working directory for other commands
+    * terraform validate
+        > Check whether the configuration is valid
+    * terraform plan
+        > Show changes required by the current configuration
+    * terraform apply
+        > Create or update infrastructure
+
+    > `Azure Authentication Important Note`  
+    > In order to provisioning the resources in Azure using the modules on this repository, you need to be authenticated first. Take a look at those links.
+    > * [Azure Provider: Authenticating using a Service Principal with a Client Certificate](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/service_principal_client_certificate)
+    > * [Azure Provider: Authenticating using a Service Principal with a Client Secret](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/service_principal_client_secret)
+    > * [Azure Provider: Authenticating using managed identities for Azure resources](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/managed_service_identity)
+    > * [Azure Provider: Authenticating using the Azure CLI](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/azure_cli) 
 
 ## Examples
 
@@ -169,12 +188,17 @@ Installation instructions assets-iac-terraform-azure by running:
     }
 
     module "sonarqube" {
-        source = "[path to module]/sonarqube"
+        source = "../../modules/sonarqube"
 
-        resourceGroupName = "SONARQUBE"
-        accountName = "mysonarqube"
-        sqlServerName = "mysonarqube"
-        sonarqubeInstances = [ "sonarqube-for-organization-a", "sonarqube-for-organization-b" ]
+        resource_group_name = "mysonarqube123"
+        account_name = "mysonarqube123"
+        sql_server_name = "mysonarqube122"
+        app_service_plan_name = "mysonarqube123"
+        sonarqube_instances = [ "sonarqube-for-organization-a", "sonarqube-for-organization-b" ]
+
+        tags =  {
+            MyTag = "MyTag value"
+        }
     }
     
     # Sadly there is a manual step you need to copy the profile.json to share "${var.instanceName}-sonarqube-conf"
