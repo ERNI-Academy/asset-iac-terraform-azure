@@ -4,39 +4,39 @@ variable "location" {
     description = "The location"
 }
 
-variable "resourceGroupName" {
+variable "resource_group_name" {
     type = string
     description = "The name of the Resource Group"
 }
 
-variable "appServicePlanName" {
+variable "app_service_plan_name" {
     type = string
     description = "The name of the Azure Service Plan"
 }
 
-variable "appServicePlanSku" {
+variable "app_service_plan_sku_tier" {
     type = string
     default = "Basic"
     description = "The sku of the Azure Service Plan. Default Basic"
 }
 
-variable "appServicePlanSkuSize" {
+variable "app_service_plan_sku_size" {
     type = string
     default = "B2"
     description = "The sku size of the Azure Service Plan. Default B2"
 }
 
-variable "accountName" {
+variable "account_name" {
     type = string
     description = "The sku size of the Azure Storage Account"
 }
 
-variable "sqlServerName" {
+variable "sql_server_name" {
     type = string
     description = "The name of the Azure Sql Server"
 }
 
-variable "sonarqubeInstances" {
+variable "sonarqube_instances" {
   type = list(string)
   description = "The instances of sonarqube to be created"
 } 
