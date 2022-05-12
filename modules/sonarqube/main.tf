@@ -64,6 +64,10 @@ resource "azurerm_sql_server" "sql_server" {
   administrator_login = local.sql_user_name
   administrator_login_password = local.sql_password
 
+  identity {
+    type = "SystemAssigned"
+  }
+
   tags = var.tags
 
   depends_on = [
