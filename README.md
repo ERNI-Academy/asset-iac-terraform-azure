@@ -113,19 +113,20 @@ Installation instructions assets-iac-terraform-azure by running:
     module "function" {
         source = "[path to module]/function"
 
-        depends_on = [
-            azurerm_resource_group.rg,
-        ]
-
-        resourceGroupName = azurerm_resource_group.rg.name
+        resource_group_name = azurerm_resource_group.rg.name
         location = azurerm_resource_group.rg.location
-        functionName = "myfnapp"
+        function_name = "myfnapp"
         environment = "DEV"
-        lawId = "[id of your analytics workspace that you need to create first]"
+        law_id = "[id of your analytics workspace that you need to create first]"
+
         tags =  {
             MyTag = "MyTag value"
         }
-    } 
+
+        depends_on = [
+            azurerm_resource_group.rg
+        ]
+    }  
 ```
 
 ### appservice module

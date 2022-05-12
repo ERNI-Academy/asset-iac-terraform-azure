@@ -1,4 +1,4 @@
-variable "resourceGroupName" {
+variable "resource_group_name" {
     type = string
     description = "The Resource Group name"
 }
@@ -13,17 +13,17 @@ variable "environment" {
     description = "The environment"
 }
 
-variable "functionName" {
+variable "function_name" {
     type = string
     description = "The Name of the Azure Service Function"
 }
 
-variable "lawId" {
+variable "law_id" {
     type = string
     description = "The Logs Analytics Workspace Id of the environment"
 }
 
-variable "appSettingsCustom" {
+variable "app_settings_custom" {
     type = map
     description = "The custom App Settings for the function app."
     default = {}

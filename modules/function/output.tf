@@ -2,6 +2,6 @@ output "id" {
     value = azurerm_function_app.fnapp.id
 }
 
-output "hostName" {
+output "hostname" {
     value = "https://${azurerm_function_app.fnapp.default_hostname}"
 }
