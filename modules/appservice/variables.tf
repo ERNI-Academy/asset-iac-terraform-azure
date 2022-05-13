@@ -1,4 +1,4 @@
-variable "resourceGroupName" {
+variable "resource_group_name" {
     type = string
     description = "The Resource Group name"
 }
@@ -8,7 +8,7 @@ variable "location" {
     description = "The location"
 }
 
-variable "planId" {
+variable "plan_id" {
     type = string
     description = "The Id of the Azure Service Plan"
 }
@@ -18,29 +18,29 @@ variable "environment" {
     description = "The environment"
 }
 
-variable "appName" {
+variable "app_name" {
     type = string
     description = "The Name of the Azure App Service"
 }
 
-variable "arrAffinityEnabled" {
+variable "client_affinity_enabled" {
     type = bool
     description = "Should the App Service send session affinity cookies, which route client requests in the same session to the same instance. Default false"
     default = false
 }
 
-variable "websocketsEnabled" {
+variable "websockets_enabled" {
     type = bool
     description = "Should the WebSockets enabled. Default false"
     default = false
 }
 
-variable "lawId" {
+variable "law_id" {
     type = string
     description = "The Logs Analytics Workspace Id of the environment"
 }
 
-variable "appSettingsCustom" {
+variable "app_settings_custom" {
     type = map
     description = "The custom App Settings for the app service."
     default = {}

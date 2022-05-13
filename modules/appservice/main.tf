@@ -5,11 +5,11 @@
 // 3- Analytics Workspace -> the analytics workspace for the application insights
 
 locals {
- insightsName = "${var.appName}-${var.environment}"
- appName = "${var.appName}-${var.environment}"
+ insights_name = "${var.app_name}-${var.environment}"
+ app_name = "${var.app_name}-${var.environment}"
  environment = upper(var.environment)
 
- appSettings = {
+ app_settings = {
     "WEBSITE_HEALTHCHECK_MAXPINGFAILURES": 5
     "WEBSITE_RUN_FROM_PACKAGE" = "1"
     "ApplicationInsightsAgent_EXTENSION_VERSION" = "~2"
@@ -21,28 +21,23 @@ locals {
 }
 
 resource "azurerm_application_insights" "insights" {
-  name = local.insightsName
-  resource_group_name = var.resourceGroupName
+  name = local.insights_name
+  resource_group_name = var.resource_group_name
   location = var.location
   application_type = "web"
-  workspace_id = var.lawId
-  public_network_access_enabled = false
+  workspace_id = var.law_id
   internet_query_enabled = false
+
   tags = var.tags
 }
 
 resource "azurerm_app_service" "app" {
-  depends_on = [
-    azurerm_application_insights.insights
-  ]
-
-  name = local.appName
-  app_service_plan_id = var.planId
-  resource_group_name = var.resourceGroupName
+  name = local.app_name
+  app_service_plan_id = var.plan_id
+  resource_group_name = var.resource_group_name
   location = var.location
-  tags = var.tags
   https_only = true
-  client_affinity_enabled = var.arrAffinityEnabled
+  client_affinity_enabled = var.client_affinity_enabled
 
   site_config {
     health_check_path = "/health"
@@ -50,10 +45,16 @@ resource "azurerm_app_service" "app" {
     always_on = true
     dotnet_framework_version = "v6.0"
     min_tls_version = "1.2"
-    websockets_enabled = var.websocketsEnabled
+    websockets_enabled = var.websockets_enabled
     ftps_state = "FtpsOnly"
     scm_type = "VSTSRM"
   }
 
-  app_settings = merge(local.appSettings, var.appSettingsCustom)
+  app_settings = merge(local.app_settings, var.app_settings_custom)
+
+  tags = var.tags
+
+  depends_on = [
+    azurerm_application_insights.insights
+  ]
 }

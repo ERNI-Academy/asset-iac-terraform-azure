@@ -4,37 +4,34 @@
 // 2- Service Bus -> the service bus namespace
 
 locals {
- serviceBusTopics = toset(distinct([
-    for x in var.topicsSubscriptions : x.topicName
+ topics = toset(distinct([
+    for x in var.topics_subscriptions : x.topic_name
  ]))
 }
 
 
 resource "azurerm_servicebus_topic" "topics" {  
-  resource_group_name = var.resourceGroupName
-  namespace_name = var.serviceBusName
-  default_message_ttl = var.topicTtl
+  namespace_id = var.service_bus_id
+  default_message_ttl = var.topic_ttl
 
-  for_each = local.serviceBusTopics
+  for_each = local.topics
 
   name = each.value
 }
 
 resource "azurerm_servicebus_subscription" "subscriptions" {
+  max_delivery_count = var.subscription_max_delivery_count
+  default_message_ttl = var.subscription_ttl
+  dead_lettering_on_message_expiration = var.subscription_enable_dead_letter
+  enable_batched_operations = var.subscription_enable_batch_operations
+
+  count = length(var.topics_subscriptions)
+
+  name = var.topics_subscriptions[count.index].subscription_name
+  topic_id = azurerm_servicebus_topic.topics[count.index].id
+
   depends_on = [
     azurerm_servicebus_topic.topics
   ]
-
-  resource_group_name = var.resourceGroupName
-  namespace_name = var.serviceBusName
-  max_delivery_count = var.subscriptionMaxDeliveryCount
-  default_message_ttl = var.subscriptionTtl
-  dead_lettering_on_message_expiration = var.subscriptionEnableDeadLetter
-  enable_batched_operations = var.subscriptionEnableBatchOperations
-
-  count = length(var.topicsSubscriptions)
-
-  name = var.topicsSubscriptions[count.index].subscriptionName
-  topic_name = var.topicsSubscriptions[count.index].topicName
 }
 

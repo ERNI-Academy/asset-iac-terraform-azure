@@ -4,48 +4,48 @@ variable "location" {
     description = "The location"
 }
 
-variable "resourceGroupName" {
+variable "resource_group_name" {
     type = string
     description = "The ResourceGroup name"
 }
 
-variable "instanceName" {
+variable "instance_name" {
     type = string
     description = "The Sonarqube instance name used as name of DB and suffix for app service and file share"
 }
 
-variable "accountName" {
+variable "account_name" {
     type = string
     description = "The Storage Account name"
 }
 
-variable "accountAccessKey" {
+variable "account_access_key" {
     type = string
     description = "The Storage Account access key"
 }
 
-variable "fileShareQuota" {
+variable "file_share_quota" {
     type = number
     description = "The File Share Quota for sonarqube volumes"
     default = 50
 }
 
-variable "appSrvPlanId" {
+variable "app_srv_plan_Id" {
     type = string
     description = "The App Service Plan id"
 }
 
-variable "sqlServerName" {
+variable "sql_server_name" {
     type = string
     description = "The SQL Server name"
 }
 
-variable "sqlUserName" {
+variable "sql_user_name" {
     type = string
     description = "The SQL Server user name"
 }
 
-variable "sqlUserPassword" {
+variable "sql_user_password" {
     type = string
     description = "The SQL Server user password"
 }

@@ -4,14 +4,14 @@
 // 2- Analytics Workspace -> the analytics workspace for the application insights
 
 locals {
- accountName = "${lower(var.functionName)}${var.environment}"
- planName = "${var.functionName}-${var.environment}"
- insightsName = "${var.functionName}-${var.environment}"
- functionName = "${var.functionName}-${var.environment}"
- insightsHealthPingName = "${var.functionName}-${var.environment}"
+ account_name = "${lower(var.function_name)}${var.environment}"
+ plan_name = "${var.function_name}-${var.environment}"
+ insights_name = "${var.function_name}-${var.environment}"
+ function_name = "${var.function_name}-${var.environment}"
+ insights_health_ping_name = "${var.function_name}-${var.environment}"
  environment = upper(var.environment)
  
- appSettings = {
+ app_settings = {
     "WEBSITE_RUN_FROM_PACKAGE" = 1
     "WEBSITE_SWAP_WARMUP_PING_PATH" = "api/health"
     "FUNCTIONS_EXTENSION_VERSION" = "~4"
@@ -22,20 +22,21 @@ locals {
 }
 
 resource "azurerm_storage_account" "account" {
-  name = local.accountName
-  resource_group_name = var.resourceGroupName
+  name = local.account_name
+  resource_group_name = var.resource_group_name
   location = var.location
   account_tier = "Standard"
   account_kind = "StorageV2"
   account_replication_type = "LRS"
   access_tier = "Hot"
   min_tls_version = "TLS1_2"
+
   tags = var.tags
 }
 
 resource "azurerm_app_service_plan" "plan" {
-  name = local.planName
-  resource_group_name = var.resourceGroupName
+  name = local.plan_name
+  resource_group_name = var.resource_group_name
   location = var.location
   kind = "FunctionApp"
 
@@ -48,31 +49,23 @@ resource "azurerm_app_service_plan" "plan" {
 }
 
 resource "azurerm_application_insights" "insights" {
-  name = local.insightsName
-  resource_group_name = var.resourceGroupName
+  name = local.insights_name
+  resource_group_name = var.resource_group_name
   location = var.location
   application_type = "web"
-  workspace_id = var.lawId
-  public_network_access_enabled = false
+  workspace_id = var.law_id
   internet_query_enabled = false
+
   tags = var.tags
 }
 
 resource "azurerm_function_app" "fnapp" {
-  depends_on = [
-    azurerm_storage_account.account,
-    azurerm_app_service_plan.plan,
-    azurerm_application_insights.insights
-  ]
-
-  name = local.functionName
-  resource_group_name = var.resourceGroupName
+  name = local.function_name
+  resource_group_name = var.resource_group_name
   location = var.location
-
   app_service_plan_id = azurerm_app_service_plan.plan.id
-  storage_account_name = local.accountName
-  storage_account_access_key = module.account.primaryAccessKey
-  tags = var.tags
+  storage_account_name = azurerm_storage_account.account.name
+  storage_account_access_key = azurerm_storage_account.account.primary_access_key
   https_only = true
   version = "~4"
 
@@ -83,28 +76,30 @@ resource "azurerm_function_app" "fnapp" {
     dotnet_framework_version = "v6.0"
   }
 
-  app_settings = merge(local.appSettings, var.appSettingsCustom)
+  app_settings = merge(local.app_settings, var.app_settings_custom)
+
+  tags = var.tags
+
+  depends_on = [
+    azurerm_storage_account.account,
+    azurerm_app_service_plan.plan,
+    azurerm_application_insights.insights
+  ]
 }
 
 resource "random_uuid" "webTestId" {}
 resource "random_uuid" "webTestRequestId" {}
 
 resource "azurerm_application_insights_web_test" "insightsHealthPing" {
-  name = local.insightsHealthPingName
+  name = local.insights_health_ping_name
   location = azurerm_function_app.fnapp.location
-  resource_group_name = var.resourceGroupName
+  resource_group_name = var.resource_group_name
   application_insights_id = azurerm_application_insights.insights.id
   kind = "ping"
   frequency = 300 //5min
   timeout = 60
   enabled = true
   retry_enabled = true
-  
-  lifecycle {
-    ignore_changes = [
-      tags
-    ]
-  }
   
   geo_locations = ["us-tx-sn1-azr", "us-il-ch1-azr", "emea-gb-db3-azr", "emea-nl-ams-azr", "apac-sg-sin-azr"] //South Central US, North Central US, North Europe, West Europe, Southeast Asia
 
@@ -115,4 +110,10 @@ resource "azurerm_application_insights_web_test" "insightsHealthPing" {
   </Items>
 </WebTest>
 XML
+
+  lifecycle {
+      ignore_changes = [
+        tags
+      ]
+    }
 }
