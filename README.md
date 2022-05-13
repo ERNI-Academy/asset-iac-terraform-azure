@@ -16,6 +16,7 @@ Infrastructure as Code (IaC) of Terraform modules for Azure
 - Azure App Service
 - Azure Function
 - Sonarqube hosted in linux app service plan with docker compose and sql server
+- Servicebus topics and queues
 
 ## Getting Started
 
@@ -68,6 +69,12 @@ Installation instructions assets-iac-terraform-azure by running:
    > Some modules expects that you have resources created. e.g. a Resource Group. Then make sure you include a "depends_on"
 
 4. Execute the modules by running the following [terraform commands](https://www.terraform.io/cli/commands):
+    * login
+        * az login
+            > login to the Azure CLI. How to install [az cli](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
+        * az account list
+            > To list the Subscriptions. It is possible to have more than one subscription, if you have more than one then select using this command: az account set --subscription="SUBSCRIPTION_ID"
+
     * terraform init 
         > Prepare your working directory for other commands
     * terraform validate
