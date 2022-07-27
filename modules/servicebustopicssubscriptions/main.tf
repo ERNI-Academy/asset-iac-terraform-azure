@@ -28,7 +28,7 @@ resource "azurerm_servicebus_subscription" "subscriptions" {
   count = length(var.topics_subscriptions)
 
   name = var.topics_subscriptions[count.index].subscription_name
-  topic_id = azurerm_servicebus_topic.topics[count.index].id
+  topic_id = azurerm_servicebus_topic.topics[var.topics_subscriptions[count.index].topic_name].id
 
   depends_on = [
     azurerm_servicebus_topic.topics
