@@ -275,7 +275,7 @@ Installation instructions assets-iac-terraform-azure by running:
     }
 ```
 
-### K8s Module
+### AKS Module
 
 ```terraform
     terraform {
@@ -300,15 +300,17 @@ Installation instructions assets-iac-terraform-azure by running:
     }    
 
     module "k8s" {
-        source = "../../modules/k8s"
+        source = "../../modules/aks"
+        environment = "development"
         resource_group_name = azurerm_resource_group.rg.name
         location = azurerm_resource_group.rg.location
         k8s_name = "k8sSample"
-        dns_prefix = "k8sSample"
         default_node_pool_name = "default"
         default_node_pool_node_count = 3
         default_node_pool_vm_size = "standard_d2_v2"
         default_node_pool_disk_size_gb = 30
+        automatic_channel_upgrade = "rapid"
+        identity_type = "SystemAssigned"
 
         tags =  {
             MyTag = "MyTag value"
@@ -317,7 +319,7 @@ Installation instructions assets-iac-terraform-azure by running:
 
 ```
 
-### K8s Module with Container registry
+### AKS Module with Container registry
 
 ```terraform
     terraform {
@@ -342,18 +344,20 @@ Installation instructions assets-iac-terraform-azure by running:
     }    
 
     module "k8s" {
-        source = "../../modules/k8s_with_container_registry"
+        source = "../../modules/aks_with_container_registry"
+        environment = "development"
         resource_group_name = azurerm_resource_group.rg.name
         location = azurerm_resource_group.rg.location
         container_name = "k8sSample"
         container_sku = "Basic"
         container_admin_enabled = true
         k8s_name = "k8sSample"
-        dns_prefix = "k8sSample"
         default_node_pool_name = "default"
         default_node_pool_node_count = 3
         default_node_pool_vm_size = "standard_d2_v2"
         default_node_pool_disk_size_gb = 30
+        automatic_channel_upgrade = "rapid"
+        identity_type = "SystemAssigned"
 
         tags =  {
             MyTag = "MyTag value"
