@@ -7,4 +7,6 @@ source control.
 Names should be added to this file as:
 Organization, Name and ```<GitHub link>```
 
-- *ERNI*. your_name [@your_github](https://github.com/your_github)
+- *ERNI*. oscar vaquero [@rabosa616](https://github.com/rabosa616)
+- *ERNI*. alberto martin [@albertinisg](https://github.com/albertinisg)
+- omar amalfi [@omaramalfi](https://github.com/omaramalfi)
