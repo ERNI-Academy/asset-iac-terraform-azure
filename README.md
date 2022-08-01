@@ -26,8 +26,9 @@ This is an example of how you may give instructions on setting up your project l
 ## Prerequisites
 
 An existing terraform project where you can import the modules in this repository. Make sure you have something like this first:
- * https://github.com/antonbabenko/terraform-best-practices/tree/master/examples/small-terraform
- * https://github.com/antonbabenko/terraform-best-practices/tree/master/examples/medium-terraform
+
+- <https://github.com/antonbabenko/terraform-best-practices/tree/master/examples/small-terraform>
+- <https://github.com/antonbabenko/terraform-best-practices/tree/master/examples/medium-terraform>
 
 ## Installation
 
@@ -70,27 +71,28 @@ Installation instructions assets-iac-terraform-azure by running:
    > Some modules expects that you have resources created. e.g. a Resource Group. Then make sure you include a "depends_on"
 
 4. Execute the modules by running the following [terraform commands](https://www.terraform.io/cli/commands):
-    * login
-        * az login
+    - login
+        - az login
             > login to the Azure CLI. How to install [az cli](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
-        * az account list
+        - az account list
             > To list the Subscriptions. It is possible to have more than one subscription, if you have more than one then select using this command: az account set --subscription="SUBSCRIPTION_ID"
 
-    * terraform init 
+    - terraform init
         > Prepare your working directory for other commands
-    * terraform validate
+    - terraform validate
         > Check whether the configuration is valid
-    * terraform plan
+    - terraform plan
         > Show changes required by the current configuration
-    * terraform apply
+    - terraform apply
         > Create or update infrastructure
 
     > `Azure Authentication Important Note`  
     > In order to provisioning the resources in Azure using the modules on this repository, you need to be authenticated first. Take a look at those links.
-    > * [Azure Provider: Authenticating using a Service Principal with a Client Certificate](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/service_principal_client_certificate)
-    > * [Azure Provider: Authenticating using a Service Principal with a Client Secret](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/service_principal_client_secret)
-    > * [Azure Provider: Authenticating using managed identities for Azure resources](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/managed_service_identity)
-    > * [Azure Provider: Authenticating using the Azure CLI](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/azure_cli) 
+    >
+    > - [Azure Provider: Authenticating using a Service Principal with a Client Certificate](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/service_principal_client_certificate)
+    > - [Azure Provider: Authenticating using a Service Principal with a Client Secret](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/service_principal_client_secret)
+    > - [Azure Provider: Authenticating using managed identities for Azure resources](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/managed_service_identity)
+    > - [Azure Provider: Authenticating using the Azure CLI](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/azure_cli)
 
 ## Examples
 
