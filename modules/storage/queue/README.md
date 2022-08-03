@@ -71,11 +71,11 @@ See [variables.tf](variables.tf)
 
 in addition of all arguments above the following attributes are exported by the module:
 
-- **`storage_account_id`**: A single null resource object as returned by [`Azure Storage Account`](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account#attributes-reference) **`id`** attribute
-- **`storage_account_name`**: A list of null resource objects as returned by [`Azure Storage Account`](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account#attributes-reference) **`name`** attribute
-- **`storage_queue_id`**: A single null resource object as returned by [`Azure Storage Queue`](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_queue#attributes-reference) **`id`** attribute
-- **`storage_queue_name`**: A list of null resource objects as returned by [`Azure Storage Queue`](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_queue#attributes-reference) **`name`** attribute
+- **`storage_account_id`**: The id of the created storage account returned by [`Azure Storage Account`](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account#attributes-reference) **`id`** attribute
+- **`storage_account_name`**: The name of the created storage account returned by [`Azure Storage Account`](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account#attributes-reference) **`name`** attribute
+- **`storage_queue_id`**: The id of the created storage queue returned by [`Azure Storage Queue`](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_queue#attributes-reference) **`id`** attribute
+- **`storage_queue_name`**: The id of the created storage queue returned by [`Azure Storage Queue`](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_queue#attributes-reference) **`name`** attribute
 
 ## Samples
 
-You have the samples in [samples folder](../../../samples/storage/account/)
+You have the samples in [samples folder](../../../samples/storage/queue/)

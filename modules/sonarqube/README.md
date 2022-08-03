@@ -45,4 +45,4 @@ See [variables.tf](variables.tf)
 
 ## Samples
 
-You have the samples in [samples folder](../../samples/servicebussample/)
+You have the samples in [samples folder](../../samples/sonarqubesample/)

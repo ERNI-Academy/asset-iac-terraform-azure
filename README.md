@@ -129,7 +129,7 @@ Installation instructions assets-iac-terraform-azure by running:
 - [**Function**](./modules/function/README.md)
 - [**ServiceBus Queues**](./modules/servicebusqueues/README.md)
 - [**ServiceBus Topics & Subscriptions**](./modules/servicebustopicssubscriptions/README.md)
-- [**SonarQube**](./modules/sonarquebe/README.md)
+- [**SonarQube**](./modules/sonarqube/README.md)
 - **Storage**
   - [**Account**](./modules/storage/account/README.md)
   - [**Container**](./modules/storage/container/README.md)
