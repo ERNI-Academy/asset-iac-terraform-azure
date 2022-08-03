@@ -7,10 +7,19 @@ A [Terraform](https://www.terraform.io) 0.12 module for creating
 .
 
 - [Azure Storage Container](#azure-storage-container)
+  - [Prerequisits](#prerequisits)
   - [Module Features](#module-features)
   - [Getting Started](#getting-started)
   - [Module Argument Reference](#module-argument-reference)
   - [Module Attributes Reference](#module-attributes-reference)
+  - [Samples](#samples)
+
+## Prerequisits
+
+To use this module you need the following resources:
+
+- [`Azure Resource Group`](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group)
+- [`Azure storage account`](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account)
 
 ## Module Features
 
@@ -68,3 +77,7 @@ in addition of all arguments above the following attributes are exported by the 
 - **`storage_account_name`**: A list of null resource objects as returned by [`Azure Storage Account`](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account#attributes-reference) **`name`** attribute
 - **`storage_container_id`**: A single null resource object as returned by [`Azure Storage Container`](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_container#attributes-reference) **`id`** attribute
 - **`storage_container_name`**: A list of null resource objects as returned by [`Azure Storage Container`](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_container#attributes-reference) **`name`** attribute
+
+## Samples
+
+You have the samples in [samples folder](../../../samples/storage/container/)
