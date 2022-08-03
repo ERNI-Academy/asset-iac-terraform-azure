@@ -1,8 +1,6 @@
 # Azure Container Registry Service
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-brightgreen.svg)](https://opensource.org/licenses/Apache-2.0)
-
-A [Terraform](https://www.terraform.io) 0.12 module for creating
+A [Terraform](https://www.terraform.io) module for creating
 [`Azure Container Registry Service`](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_registry) resources.
 
 - [Azure Container Registry Service](#azure-container-registry-service)

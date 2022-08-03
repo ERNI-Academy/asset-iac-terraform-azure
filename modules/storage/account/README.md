@@ -1,8 +1,6 @@
 # Azure Storage Account
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-brightgreen.svg)](https://opensource.org/licenses/Apache-2.0)
-
-A [Terraform](https://www.terraform.io) 0.12 module for creating
+A [Terraform](https://www.terraform.io) module for creating
 [`Azure storage account`](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account) resources.
 .
 
