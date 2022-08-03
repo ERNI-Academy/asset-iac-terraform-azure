@@ -13,6 +13,6 @@ output "storage_table_id" {
   value = azurerm_storage_table.table.id
 }
 
-output "storage_table_name"{
-    value = azurerm_storage_table.table.name
+output "storage_table_name" {
+  value = azurerm_storage_table.table.name
 }

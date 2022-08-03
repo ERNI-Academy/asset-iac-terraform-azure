@@ -1,3 +1,6 @@
+// ------------------------------------------------------------------------------
+// output module configuration
+// ------------------------------------------------------------------------------
 output "container_registry_id" {
   description = "The Container Registry ID."
   value       = azurerm_container_registry.container.id

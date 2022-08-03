@@ -3,7 +3,7 @@
 // ------------------------------------------------------------------------------
 variable "account_name" {
   type        = string
-  description = " Specifies the name of the storage account"
+  description = "Specifies the name of the storage account"
 }
 
 variable "account_tier" {
@@ -13,8 +13,14 @@ variable "account_tier" {
 
 variable "account_kind" {
   type        = string
-  description = " Defines the Kind of account. Valid options are BlobStorage, BlockBlobStorage, FileStorage, Storage and StorageV2. Changing this forces a new resource to be created. Defaults to StorageV2"
+  description = "Defines the Kind of account. Valid options are BlobStorage, BlockBlobStorage, FileStorage, Storage and StorageV2. Changing this forces a new resource to be created. Defaults to StorageV2"
   default     = "StorageV2"
+}
+
+variable "account_access_tier" {
+  type        = string
+  description = "Defines the access tier for BlobStorage, FileStorage and StorageV2 accounts. Valid options are Hot and Cool, defaults to Hot"
+  default     = "Hot"
 }
 
 variable "account_replication_type" {
@@ -23,9 +29,9 @@ variable "account_replication_type" {
 }
 
 variable "min_tls_version" {
-  type = string
-  default = "TLS1_2"
-  description = "The minimum supported TLS version for the storage account. Possible values are TLS1_0, TLS1_1, and TLS1_2. Defaults to TLS1_2 for new storage accounts."  
+  type        = string
+  default     = "TLS1_2"
+  description = "The minimum supported TLS version for the storage account. Possible values are TLS1_0, TLS1_1, and TLS1_2. Defaults to TLS1_2 for new storage accounts."
 }
 
 variable "identity_type" {
@@ -41,21 +47,21 @@ variable "identity_ids" {
 }
 
 variable "queue_loging_delete" {
-  type = bool
+  type        = bool
   description = "Indicates whether all delete requests should be logged. Changing this forces a new resource. Default false"
-  default = false
+  default     = false
 }
 
 variable "queue_loging_read" {
-  type = bool
+  type        = bool
   description = "Indicates whether all read requests should be logged. Changing this forces a new resource. Default false"
-  default = false
+  default     = false
 }
 
 variable "queue_loging_write" {
-  type = bool
+  type        = bool
   description = "Indicates whether all write requests should be logged. Changing this forces a new resource. Default false"
-  default = false
+  default     = false
 }
 
 variable "resource_group_name" {

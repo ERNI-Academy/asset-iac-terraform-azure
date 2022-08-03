@@ -1,3 +1,6 @@
+// ------------------------------------------------------------------------------
+// output module configuration
+// ------------------------------------------------------------------------------
 output "container_registry_id" {
   description = "The Container Registry ID."
   value       = module.container.container_registry_id
@@ -30,14 +33,14 @@ output "container_registry_admin_password" {
 }
 
 resource "local_file" "kubeconfig" {
-  depends_on   = [module.aks]
-  filename     = "kubeconfig"
-  content      = module.aks.kube_config
+  depends_on = [module.aks]
+  filename   = "kubeconfig"
+  content    = module.aks.kube_config
 }
 
 output "kube_config" {
   value = module.aks.kube_config
 }
 output "kubernetes_cluster_name" {
- value = module.aks.kubernetes_cluster_name
+  value = module.aks.kubernetes_cluster_name
 }

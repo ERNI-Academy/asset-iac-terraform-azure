@@ -1,3 +1,6 @@
+// ------------------------------------------------------------------------------
+// output module configuration
+// ------------------------------------------------------------------------------
 resource "local_file" "kubeconfig" {
   depends_on = [azurerm_kubernetes_cluster.cluster]
   filename   = "kubeconfig"
