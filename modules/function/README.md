@@ -4,14 +4,14 @@ A [Terraform](https://www.terraform.io) module for creating
 [`Azure Function App`](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/function_app) resources.
 
 - [Azure Function App Service](#azure-function-app-service)
-  - [Prerequisits](#prerequisits)
+  - [Prerequisites](#prerequisites)
   - [Module Features](#module-features)
   - [Getting Started](#getting-started)
   - [Module Argument Reference](#module-argument-reference)
   - [Module Attributes Reference](#module-attributes-reference)
   - [Samples](#samples)
 
-## Prerequisits
+## Prerequisites
 
 To use this module you need the following resources:
 

@@ -4,14 +4,14 @@ A [Terraform](https://www.terraform.io) module for creating
 [`Azure App Service`](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/app_service) resources with [`Azure Applicaiton Insights`](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/application_insights) component.
 
 - [Azure App Service](#azure-app-service)
-  - [Prerequisits](#prerequisits)
+  - [Prerequisites](#prerequisites)
   - [Module Features](#module-features)
   - [Getting Started](#getting-started)
   - [Module Argument Reference](#module-argument-reference)
   - [Module Attributes Reference](#module-attributes-reference)
   - [Samples](#samples)
 
-## Prerequisits
+## Prerequisites
 
 To use this module you need the following resources:
 

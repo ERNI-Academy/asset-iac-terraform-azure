@@ -4,13 +4,13 @@ A [Terraform](https://www.terraform.io) module for creating
 [`Azure ServiceBus Queue`](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/servicebus_queue) resources.
 
 - [Azure ServiceBus queues](#azure-servicebus-queues)
-  - [Prerequisits](#prerequisits)
+  - [Prerequisites](#prerequisites)
   - [Module Features](#module-features)
   - [Getting Started](#getting-started)
   - [Module Argument Reference](#module-argument-reference)
   - [Samples](#samples)
 
-## Prerequisits
+## Prerequisites
 
 To use this module you need the following resources:
 

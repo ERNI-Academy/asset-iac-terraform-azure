@@ -5,14 +5,14 @@ A [Terraform](https://www.terraform.io) module for creating
 .
 
 - [Azure Kubernetes Service (AKS)](#azure-kubernetes-service-aks)
-  - [Prerequisits](#prerequisits)
+  - [Prerequisites](#prerequisites)
   - [Module Features](#module-features)
   - [Getting Started](#getting-started)
   - [Module Argument Reference](#module-argument-reference)
   - [Module Attributes Reference](#module-attributes-reference)
   - [Samples](#samples)
 
-## Prerequisits
+## Prerequisites
 
 To use this module you need the following resources:
 

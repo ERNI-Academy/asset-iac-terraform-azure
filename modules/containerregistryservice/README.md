@@ -4,14 +4,14 @@ A [Terraform](https://www.terraform.io) module for creating
 [`Azure Container Registry Service`](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_registry) resources.
 
 - [Azure Container Registry Service](#azure-container-registry-service)
-  - [Prerequisits](#prerequisits)
+  - [Prerequisites](#prerequisites)
   - [Module Features](#module-features)
   - [Getting Started](#getting-started)
   - [Module Argument Reference](#module-argument-reference)
   - [Module Attributes Reference](#module-attributes-reference)
   - [Samples](#samples)
 
-## Prerequisits
+## Prerequisites
 
 To use this module you need the following resources:
 

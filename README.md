@@ -9,15 +9,25 @@ Infrastructure as Code (IaC) of Terraform modules for Azure
 ## Built With
 
 - [Terraform ">= 1.1.3"](https://www.terraform.io/)
-- [Terraform AzureRm provider version ">= >= 3.5.0"](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs)
+- [Terraform AzureRm provider version ">= 3.5.0"](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs)
 - [Sonarqube image sonarqube:8.9-developer](https://www.sonarqube.org/)
 
 ## Modules
 
-- Azure App Service
-- Azure Function
-- Sonarqube hosted in linux app service plan with docker compose and sql server
-- Servicebus topics and queues
+- [**AKS**](./modules/aks/README.md)
+- [**AKS with Container Registry (ACR)**](./modules/aks_with_container_registry/README.md)
+- [**AppService**](./modules/appservice/README.md)
+- [**Container Registry Service**](./modules/containerregistryservice/README.md)
+- [**Function**](./modules/function/README.md)
+- [**ServiceBus Queues**](./modules/servicebusqueues/README.md)
+- [**ServiceBus Topics & Subscriptions**](./modules/servicebustopicssubscriptions/README.md)
+- [**SonarQube**](./modules/sonarqube/README.md)
+- **Storage**
+  - [**Account**](./modules/storage/account/README.md)
+  - [**Container**](./modules/storage/container/README.md)
+  - [**Queue**](./modules/storage/queue/README.md)
+  - [**Table**](./modules/storage/table/README.md)
+- [**Terraform Null Resource**](./modules/terraform-null-resource/README.md)
 
 ## Getting Started
 
@@ -119,23 +129,6 @@ Installation instructions assets-iac-terraform-azure by running:
     > - [Azure Provider: Authenticating using a Service Principal with a Client Secret](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/service_principal_client_secret)
     > - [Azure Provider: Authenticating using managed identities for Azure resources](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/managed_service_identity)
     > - [Azure Provider: Authenticating using the Azure CLI](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/azure_cli)
-
-## Available Modules
-
-- [**AKS**](./modules/aks/README.md)
-- [**AKS with Container Registry (ACR)**](./modules/aks_with_container_registry/README.md)
-- [**AppService**](./modules/appservice/README.md)
-- [**Container Registry Service**](./modules/containerregistryservice/README.md)
-- [**Function**](./modules/function/README.md)
-- [**ServiceBus Queues**](./modules/servicebusqueues/README.md)
-- [**ServiceBus Topics & Subscriptions**](./modules/servicebustopicssubscriptions/README.md)
-- [**SonarQube**](./modules/sonarqube/README.md)
-- **Storage**
-  - [**Account**](./modules/storage/account/README.md)
-  - [**Container**](./modules/storage/container/README.md)
-  - [**Queue**](./modules/storage/queue/README.md)
-  - [**Table**](./modules/storage/table/README.md)
-- [**Terraform Null Resource**](./modules/terraform-null-resource/README.md)
 
 ## Contributing
 

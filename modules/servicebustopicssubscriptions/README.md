@@ -4,13 +4,13 @@ A [Terraform](https://www.terraform.io) module for creating
 [`Azure ServiceBus Subscription`](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/servicebus_subscription) and [`Azure ServiceBus Topics`](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/servicebus_topic) resources.
 
 - [Azure ServiceBus Subscriptions & Topics](#azure-servicebus-subscriptions--topics)
-  - [Prerequisits](#prerequisits)
+  - [Prerequisites](#prerequisites)
   - [Module Features](#module-features)
   - [Getting Started](#getting-started)
   - [Module Argument Reference](#module-argument-reference)
   - [Samples](#samples)
 
-## Prerequisits
+## Prerequisites
 
 To use this module you need the following resources:
 
