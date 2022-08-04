@@ -4,14 +4,14 @@
 // 2- Service Bus -> the service bus namespace
 
 locals {
- topics = toset(distinct([
+  topics = toset(distinct([
     for x in var.topics_subscriptions : x.topic_name
- ]))
+  ]))
 }
 
 
-resource "azurerm_servicebus_topic" "topics" {  
-  namespace_id = var.service_bus_id
+resource "azurerm_servicebus_topic" "topics" {
+  namespace_id        = var.service_bus_id
   default_message_ttl = var.topic_ttl
 
   for_each = local.topics
@@ -20,14 +20,14 @@ resource "azurerm_servicebus_topic" "topics" {
 }
 
 resource "azurerm_servicebus_subscription" "subscriptions" {
-  max_delivery_count = var.subscription_max_delivery_count
-  default_message_ttl = var.subscription_ttl
+  max_delivery_count                   = var.subscription_max_delivery_count
+  default_message_ttl                  = var.subscription_ttl
   dead_lettering_on_message_expiration = var.subscription_enable_dead_letter
-  enable_batched_operations = var.subscription_enable_batch_operations
+  enable_batched_operations            = var.subscription_enable_batch_operations
 
   count = length(var.topics_subscriptions)
 
-  name = var.topics_subscriptions[count.index].subscription_name
+  name     = var.topics_subscriptions[count.index].subscription_name
   topic_id = azurerm_servicebus_topic.topics[var.topics_subscriptions[count.index].topic_name].id
 
   depends_on = [

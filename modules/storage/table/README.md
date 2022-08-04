@@ -1,16 +1,23 @@
 # Azure Storage Table
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-brightgreen.svg)](https://opensource.org/licenses/Apache-2.0)
-
-A [Terraform](https://www.terraform.io) 0.12 module for creating
+A [Terraform](https://www.terraform.io) module for creating
 [`Azure Storage Table`](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_table) resources.
 .
 
 - [Azure Storage Table](#azure-storage-table)
+  - [Prerequisites](#prerequisites)
   - [Module Features](#module-features)
   - [Getting Started](#getting-started)
   - [Module Argument Reference](#module-argument-reference)
   - [Module Attributes Reference](#module-attributes-reference)
+  - [Samples](#samples)
+
+## Prerequisites
+
+To use this module you need the following resources:
+
+- [`Azure Resource Group`](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group)
+- [`Azure storage account`](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account)
 
 ## Module Features
 
@@ -62,7 +69,11 @@ See [variables.tf](variables.tf)
 
 in addition of all arguments above the following attributes are exported by the module:
 
-- **`storage_account_id`**: A single null resource object as returned by [`Azure Storage Account`](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account#attributes-reference) **`id`** attribute
-- **`storage_account_name`**: A list of null resource objects as returned by [`Azure Storage Account`](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account#attributes-reference) **`name`** attribute
-- **`storage_table_id`**: A single null resource object as returned by [`Azure Storage Queue`](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_table#attributes-reference) **`id`** attribute
-- **`storage_table_name`**: A list of null resource objects as returned by [`Azure Storage Queue`](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_table#attributes-reference) **`name`** attribute
+- **`storage_account_id`**: The id of the created storage account returned by [`Azure Storage Account`](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account#attributes-reference) **`id`** attribute
+- **`storage_account_name`**: The name of the created storage account returned by [`Azure Storage Account`](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account#attributes-reference) **`name`** attribute
+- **`storage_table_id`**: The id of the created storage table returned by [`Azure Storage Queue`](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_table#attributes-reference) **`id`** attribute
+- **`storage_table_name`**: The name of the created storage table returned by [`Azure Storage Queue`](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_table#attributes-reference) **`name`** attribute
+
+## Samples
+
+You have the samples in [samples folder](../../../samples/storage/table/)

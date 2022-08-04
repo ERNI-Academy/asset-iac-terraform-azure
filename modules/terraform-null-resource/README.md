@@ -1,8 +1,6 @@
 # terraform-null-resource
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-brightgreen.svg)](https://opensource.org/licenses/Apache-2.0)
-
-A [Terraform](https://www.terraform.io) 0.12 module creating a bunch of
+A [Terraform](https://www.terraform.io) module creating a bunch of
 [`null_resource`](https://www.terraform.io/docs/providers/null/resource.html) resources to be used in examples.
 
 - [terraform-null-resource](#terraform-null-resource)
@@ -12,6 +10,7 @@ A [Terraform](https://www.terraform.io) 0.12 module creating a bunch of
     - [Module Configuration](#module-configuration)
     - [Top-level Arguments](#top-level-arguments)
   - [Module Attributes Reference](#module-attributes-reference)
+  - [Samples](#samples)
 
 ## Module Features
 
@@ -72,3 +71,7 @@ in addition of all arguments above the following attributes are exported by the 
   [`null_resource`](https://www.terraform.io/docs/providers/null/resource.html#attributes-reference)
 - **`for_each`**: A map of null resource objects keyed by the value of the elements of the input list
   [`null_resource`](https://www.terraform.io/docs/providers/null/resource.html#attributes-reference)
+
+## Samples
+
+You have the samples in [samples folder](../../samples/terraform-null-resource/)

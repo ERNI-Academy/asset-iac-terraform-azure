@@ -4,8 +4,8 @@
 // 2- Storage account if is not created previously the module can create it
 
 locals {
-  account_name = "${var.account_name}${var.environment}"
-  queue_name   = "${var.queue_name}-${var.environment}"
+  account_name   = "${var.account_name}${var.environment}"
+  queue_name     = "${var.queue_name}-${var.environment}"
   create_account = var.account_id == "" ? true : false
 }
 
@@ -32,7 +32,7 @@ module "storage_account" {
 
 resource "azurerm_storage_queue" "queue" {
   name                 = local.queue_name
-  storage_account_name  = module.create_account_module.module_enabled ? local.account_name : var.account_name
+  storage_account_name = module.create_account_module.module_enabled ? local.account_name : var.account_name
   depends_on = [
     module.storage_account
   ]

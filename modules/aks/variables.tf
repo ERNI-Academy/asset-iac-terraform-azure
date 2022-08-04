@@ -1,3 +1,6 @@
+// ------------------------------------------------------------------------------
+// module configuration variables
+// ------------------------------------------------------------------------------
 variable "resource_group_name" {
   type        = string
   description = "The Resource Group name"

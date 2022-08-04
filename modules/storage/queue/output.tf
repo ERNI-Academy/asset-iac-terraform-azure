@@ -13,6 +13,6 @@ output "storage_queue_id" {
   value = azurerm_storage_queue.queue.id
 }
 
-output "storage_queue_name"{
-    value = azurerm_storage_queue.queue.name
+output "storage_queue_name" {
+  value = azurerm_storage_queue.queue.name
 }

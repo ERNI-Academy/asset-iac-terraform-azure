@@ -13,6 +13,7 @@ resource "azurerm_storage_account" "account" {
   account_tier             = var.account_tier
   account_kind             = var.account_kind
   account_replication_type = var.account_replication_type
+  access_tier              = var.account_access_tier
   min_tls_version          = var.min_tls_version
   identity {
     type         = var.identity_type
