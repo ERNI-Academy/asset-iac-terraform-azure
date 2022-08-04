@@ -64,6 +64,18 @@ variable "queue_loging_write" {
   default     = false
 }
 
+variable "queue_loging_version" {
+  type        = string
+  description = "The version of storage analytics to configure. Changing this forces a new resource. Default v1"
+  default     = "v1"
+}
+
+variable "retention_policy_days" {
+  type = number
+  description = "Specifies the number of days that logs will be retained. Changing this forces a new resource. Default 7 days"
+  default = 7  
+}
+
 variable "resource_group_name" {
   type        = string
   description = "The Resource Group name"

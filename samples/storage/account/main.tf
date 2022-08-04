@@ -25,11 +25,11 @@ module "account" {
   environment              = "development"
   resource_group_name      = azurerm_resource_group.rg.name
   location                 = azurerm_resource_group.rg.location
-  account_id               = ""
   account_name             = "accountsample"
   account_kind             = "StorageV2"
   account_tier             = "Standard"
   account_replication_type = "GRS"
+  
   tags = {
     environment = "Demo"
   }
