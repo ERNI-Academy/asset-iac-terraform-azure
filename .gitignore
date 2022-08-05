@@ -5,6 +5,9 @@
 *.tfstate
 *.tfstate.*
 
+# Local infracost directories
+**/.infracost/*
+
 # Crash log files
 crash.log
 crash.*.log
