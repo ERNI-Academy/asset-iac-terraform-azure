@@ -80,3 +80,4 @@ jobs:
                                    --github-token=${{github.token}} \
                                    --pull-request=${{github.event.pull_request.number}} \
                                    --behavior=update
+                                   --format table
