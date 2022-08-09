@@ -29,7 +29,7 @@ module "aks" {
   default_node_pool_name         = "default"
   default_node_pool_node_count   = 3
   default_node_pool_vm_size      = "standard_d2_v2"
-  default_node_pool_disk_size_gb = 30
+  default_node_pool_disk_size_gb = 300
   automatic_channel_upgrade      = "rapid"
   identity_type                  = "SystemAssigned"
   tags = {
