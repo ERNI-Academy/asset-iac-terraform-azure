@@ -61,7 +61,7 @@ jobs:
       - name: Generate Infracost diff
         run: |
           infracost diff --path=${TF_ROOT} \
-                              --format=json \
+                              --format=table \
                               --compare-to=/tmp/infracost-base.json \
                               --out-file=/tmp/infracost.json
 
@@ -80,4 +80,3 @@ jobs:
                                    --github-token=${{github.token}} \
                                    --pull-request=${{github.event.pull_request.number}} \
                                    --behavior=update
-                                   --format table
