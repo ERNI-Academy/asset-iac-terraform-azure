@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= >= 3.5.0"
+      version = ">= 3.5.0"
     }
   }
 }
@@ -11,8 +11,8 @@ provider "azurerm" {
   features {}
 }
 
-module "sonarqube" {
-  source = "../../modules/sonarqube"
+module "sonarqubepaas" {
+  source = "../../modules/sonarqubepaas"
 
   resource_group_name   = "mysonarqube123"
   account_name          = "mysonarqube123"
