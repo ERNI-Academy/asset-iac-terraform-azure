@@ -34,6 +34,7 @@ resource "azurerm_application_insights" "insights" {
   resource_group_name = var.resource_group_name
   workspace_id        = azurerm_log_analytics_workspace.workspace.id
   application_type    = "web"
+  internet_ingestion_enabled = false
 
   tags = var.tags
 }
@@ -51,6 +52,11 @@ resource "azurerm_linux_web_app" "app" {
   resource_group_name = var.resource_group_name
   location            = var.location
   service_plan_id     = azurerm_service_plan.plan.id
+  client_certificate_enabled = false
+
+  auth_settings {
+    enabled = false
+  }
 
   site_config {
     health_check_path        = "/health"
