@@ -46,30 +46,6 @@ variable "identity_ids" {
   default     = null
 }
 
-variable "queue_loging_delete" {
-  type        = bool
-  description = "Indicates whether all delete requests should be logged. Changing this forces a new resource. Default false"
-  default     = false
-}
-
-variable "queue_loging_read" {
-  type        = bool
-  description = "Indicates whether all read requests should be logged. Changing this forces a new resource. Default false"
-  default     = false
-}
-
-variable "queue_loging_write" {
-  type        = bool
-  description = "Indicates whether all write requests should be logged. Changing this forces a new resource. Default false"
-  default     = false
-}
-
-variable "queue_loging_version" {
-  type        = string
-  description = "The version of storage analytics to configure. Changing this forces a new resource. Default v1"
-  default     = "v1"
-}
-
 variable "retention_policy_days" {
   type = number
   description = "Specifies the number of days that logs will be retained. Changing this forces a new resource. Default 7 days"

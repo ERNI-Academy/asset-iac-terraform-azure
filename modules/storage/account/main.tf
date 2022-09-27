@@ -20,14 +20,5 @@ resource "azurerm_storage_account" "account" {
     identity_ids = var.identity_ids
   }
 
-  queue_properties {
-    logging { # Sensitive
-      delete                = var.queue_loging_delete
-      read                  = var.queue_loging_read
-      write                 = var.queue_loging_write
-      version               = var.queue_loging_version
-      retention_policy_days = var.retention_policy_days
-    }
-  }
   tags = var.tags
 }
