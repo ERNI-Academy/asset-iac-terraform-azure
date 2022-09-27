@@ -20,14 +20,14 @@ resource "azurerm_resource_group" "rg" {
 }
 
 module "appservice" {
-  source = "../../modules/appservice"
+  source = "../../modules/linuxwebapp"
 
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
-  app_name            = "myapp"
+  app_name            = "3253245linux" //Change me!
+  plan_name           = "myplan"
   environment         = "DEV"
-  plan_id             = "[id of your app service plan that you need to create first]"    # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/app_service_plan
-  law_id              = "[id of your analytics workspace that you need to create first]" # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/log_analytics_workspace
+  workspace_name      = "myworkspace"
 
   tags = {
     MyTag = "MyTag value"
