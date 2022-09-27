@@ -6,14 +6,31 @@ variable "resource_group_name" {
   description = "The Resource Group name"
 }
 
+variable "workspace_name" {
+  type        = string
+  description = "The Resource Group name"
+}
+
 variable "location" {
   type        = string
   description = "The location"
 }
 
-variable "plan_id" {
+variable "plan_name" {
   type        = string
-  description = "The Id of the Azure Service Plan"
+  description = "The name of the Azure Service Plan"
+}
+
+variable "app_service_plan_os_type" {
+  type        = string
+  default     = "Linux"
+  description = "The sku of the Azure Service Plan. Default Basic"
+}
+
+variable "app_service_plan_sku_name" {
+  type        = string
+  default     = "P1v2"
+  description = "The sku of the Azure Service Plan. Default Basic"
 }
 
 variable "environment" {
@@ -36,11 +53,6 @@ variable "websockets_enabled" {
   type        = bool
   description = "Should the WebSockets enabled. Default false"
   default     = false
-}
-
-variable "law_id" {
-  type        = string
-  description = "The Logs Analytics Workspace Id of the environment"
 }
 
 variable "app_settings_custom" {
