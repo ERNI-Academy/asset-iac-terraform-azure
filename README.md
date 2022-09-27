@@ -1,16 +1,18 @@
 # About assets-iac-terraform-azure
 
-Infrastructure as Code (IaC) of Terraform modules for Azure
+Infrastructure as Code (IaC) Terraform modules for Azure. Deploy any of the ready-to-go modules in Azure with just 3 terraform commands.
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-## Built With
+## Prerequisites
 
-- [Terraform ">= 1.1.3"](https://www.terraform.io/)
-- [Terraform AzureRm provider version ">= 3.5.0"](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs)
-- [Sonarqube image sonarqube:8.9-developer](https://www.sonarqube.org/)
+To deploy any of the modules, you will need:
+
+- [terraform => 0.13.3](https://learn.hashicorp.com/tutorials/terraform/install-cli)
+- [az cli => 2.38](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
+- An Azure Subscription where to deploy everything. Start [here](https://azure.microsoft.com/en-us/free/) for free.
 
 ## Modules
 
@@ -30,106 +32,66 @@ Infrastructure as Code (IaC) of Terraform modules for Azure
   - [**Table**](./modules/storage/table/README.md)
 - [**Terraform Null Resource**](./modules/terraform-null-resource/README.md)
 
-## Getting Started
+## Deploy your infrastructure
 
-This is an example of how you may give instructions on setting up your project locally. To get a local copy up and running follow these simple example steps.
+1. Authenticate using the Azure CLI
 
-## Prerequisites
+```
+$ az login
+```
 
-An existing terraform project where you can import the modules in this repository. Make sure you have something like this first:
+2. Choose the subscription to use by doing:
+
+```
+az account set --subscription <id>
+```
+3. Browse to the sample you want to deploy by browsing to samples/XXXX.
+4. Modify the variables to match your needs at `main.tf`
+5. initizlize your terraform configuration:
+
+```
+$ terraform init
+```
+6. Validate your configuration
+```
+terraform validate
+```
+7. Plan your Terraform Run
+```
+$ terraform plan
+```
+8. Apply your Terraform Configuration
+```
+$ terraform apply
+```
+
+## Destroy your infrastructure
+
+Use terraform destroy to remove infrastructure from your Azure cloud account (in the specific folder where you have the resource).
+
+```
+terraform destroy
+```
+
+## What's next?
+
+For us, this is just an entrypoint on how to start using and playing around Terraform by following simple steps. Those in the end are just Manual Changes that can evolve to `semi-automated` and real `infrastructure-as-code`.
+
+See the recommended practices of [Terraform](https://www.terraform.io/cloud-docs/recommended-practices) to bring your automatization to the next level!
+
+Also, you can create your own infrastructure and terraform files by following some best practices:
 
 - <https://github.com/antonbabenko/terraform-best-practices/tree/master/examples/small-terraform>
 - <https://github.com/antonbabenko/terraform-best-practices/tree/master/examples/medium-terraform>
 
-## Installation
 
-Installation instructions assets-iac-terraform-azure by running:
-
-1. Clone the repo
-
-   ```sh
-   git clone https://github.com/ERNI-Academy/assets-iac-terraform-azure.git
-   ```
-
-2. Import the modules into your existing terraform project. The azurerm provider is mandatory, make sure you include a reference to the provider like this:
-
-   ```terraform
-    terraform {
-        required_providers {
-            azurerm = {
-                source = "hashicorp/azurerm"
-                version = ">= [version]"
-            }
-        }
-    }
-
-    provider "azurerm" {
-        features {}
-    }
-   ```
-
-3. Call the desire module, to see mandatory variables take a look at variables.tf file for each module
-
-    ```terraform
-        module "function" {
-            source = "[path to module]/function"
-
-            # make sure you pass all mandatory variables
-        }
-    ```
-
-   > `Depends on Important Note`  
-   > Some modules expects that you have resources created. e.g. a Resource Group. Then make sure you include a "depends_on"
-
-4. Execute the modules by running the following [terraform commands](https://www.terraform.io/cli/commands):
-   1. Authenticate using the Azure CLI
-      login to the Azure CLI. How to install [az cli](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
-
-    ```bash
-    az login
-    ```
-
-   2. Choose the subscription to use by doing:
-
-   ```bash
-    az account set --subscription <id>
-   ```
-
-   3. Browse to the module you want to deploy by browsing to modules/XXXX
-
-   4. Modify the variables to match your needs at modules/XXXX/terraform.tfvars and/or variables.tf
-
-   5. initizlize your terraform configuration:
-
-    ```bash
-    terraform init
-    ```
-
-   6. Validate your terraform configuration
-
-    ```bash
-    terraform validate
-    ```
-
-   7. Plan your Terraform Run
-
-    ```bash
-    terraform plan
-    ```
-
-   8. Apply your Terraform Configuration
-
-   ```bash
-   terraform apply
-   ```
-
-    > `Azure Authentication Important Note`  
-    > In order to provisioning the resources in Azure using the modules on this repository, you need to be authenticated first. Take a look at those links.
-    >
-    > - [Azure Provider: Authenticating using a Service Principal with a Client Certificate](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/service_principal_client_certificate)
-    > - [Azure Provider: Authenticating using a Service Principal with a Client Secret](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/service_principal_client_secret)
-    > - [Azure Provider: Authenticating using managed identities for Azure resources](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/managed_service_identity)
-    > - [Azure Provider: Authenticating using the Azure CLI](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/azure_cli)
+### `Azure Authentication Important Note`  
+> In order to provisioning the resources in Azure using the modules on this repository, you need to be authenticated first. Take a look at those links.
+>
+> - [Azure Provider: Authenticating using a Service Principal with a Client Certificate](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/service_principal_client_certificate)
+> - [Azure Provider: Authenticating using a Service Principal with a Client Secret](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/service_principal_client_secret)
+> - [Azure Provider: Authenticating using managed identities for Azure resources](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/managed_service_identity)
+> - [Azure Provider: Authenticating using the Azure CLI](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/azure_cli)
 
 ## Contributing
 
