@@ -16,7 +16,8 @@ Infrastructure as Code (IaC) of Terraform modules for Azure
 
 - [**AKS**](./modules/aks/README.md)
 - [**AKS with Container Registry (ACR)**](./modules/aks_with_container_registry/README.md)
-- [**AppService**](./modules/appservice/README.md)
+- [**Linux Web App**](./modules/linuxwebapp/README.md)
+- [**Windows Web App**](./modules/windowswebapp/README.md)
 - [**Container Registry Service**](./modules/containerregistryservice/README.md)
 - [**Function**](./modules/function/README.md)
 - [**ServiceBus Queues**](./modules/servicebusqueues/README.md)
