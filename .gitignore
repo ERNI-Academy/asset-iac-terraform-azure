@@ -36,3 +36,6 @@ override.tf.json
 .terraformrc
 terraform.rc
 .terraform.lock.hcl
+
+# Ignore certificates and prevent it to be pushed
+*.pem
